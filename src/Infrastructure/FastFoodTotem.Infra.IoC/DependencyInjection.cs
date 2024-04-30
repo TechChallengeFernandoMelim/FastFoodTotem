@@ -1,10 +1,14 @@
-﻿using FastFoodTotem.Application.MediatorPipes.Behavior;
+﻿using Amazon;
+using Amazon.Runtime;
+using Amazon.SQS;
+using FastFoodTotem.Application.MediatorPipes.Behavior;
 using FastFoodTotem.Domain;
 using FastFoodTotem.Domain.Contracts.Payments;
 using FastFoodTotem.Domain.Contracts.Repositories;
 using FastFoodTotem.Domain.Validations;
 using FastFoodTotem.Infra.SqlServer.Database;
 using FastFoodTotem.Infra.SqlServer.Repositories;
+using FastFoodTotem.Logger;
 using FastFoodTotem.MercadoPago;
 using FluentValidation;
 using MediatR;
@@ -28,6 +32,18 @@ public static class DependencyInjection
         ConfigureOrderPaymentServices(services);
         ConfigureMediatr(services);
         ConfigureAutomapper(services);
+        ConfigureSQS(services, configuration);
+    }
+
+    private static void ConfigureSQS(IServiceCollection services, IConfiguration configuration)
+    {
+        string accessKey = configuration.GetRequiredSection("AWS_ACCESS_KEY_DYNAMO").Value;
+        string secretKey = configuration.GetRequiredSection("AWS_SECRET_KEY_DYNAMO").Value;
+
+        AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+        var sqsClient = new AmazonSQSClient(credentials, RegionEndpoint.USEast1);
+        services.AddSingleton(sqsClient);
+        services.AddSingleton<Domain.Contracts.Loggers.ILogger, SqsLogger>();
     }
 
     private static void ConfigureAutomapper(IServiceCollection services)

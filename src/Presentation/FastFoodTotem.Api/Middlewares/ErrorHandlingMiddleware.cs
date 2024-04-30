@@ -8,10 +8,12 @@ namespace FastFoodTotem.Api.Middlewares;
 public class ErrorHandlingMiddleware
 {
     private readonly RequestDelegate _next;
+    private readonly FastFoodTotem.Domain.Contracts.Loggers.ILogger _logger;
 
-    public ErrorHandlingMiddleware(RequestDelegate next)
+    public ErrorHandlingMiddleware(RequestDelegate next, FastFoodTotem.Domain.Contracts.Loggers.ILogger logger)
     {
         _next = next;
+        _logger = logger;
     }
 
     public async Task Invoke(HttpContext context)
@@ -60,6 +62,8 @@ public class ErrorHandlingMiddleware
             };
 
             await response.WriteAsync(JsonSerializer.Serialize(result));
+
+            await _logger.Log(ex.StackTrace, ex.Message, ex.ToString());
         }
     }
 }

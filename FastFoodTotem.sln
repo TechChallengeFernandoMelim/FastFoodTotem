@@ -50,6 +50,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodTotem.Infra.SqlServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodTotem.MercadoPago", "src\Infrastructure\FastFoodTotem.MercadoPago\FastFoodTotem.MercadoPago.csproj", "{DB993E1E-02DF-463F-BF5A-2EC154D57289}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodTotem.Logger", "src\Infrastructure\FastFoodTotem.Logger\FastFoodTotem.Logger.csproj", "{6DD55628-813A-463D-A26E-9DE47F2B4C2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{DB993E1E-02DF-463F-BF5A-2EC154D57289}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB993E1E-02DF-463F-BF5A-2EC154D57289}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB993E1E-02DF-463F-BF5A-2EC154D57289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD55628-813A-463D-A26E-9DE47F2B4C2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD55628-813A-463D-A26E-9DE47F2B4C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD55628-813A-463D-A26E-9DE47F2B4C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD55628-813A-463D-A26E-9DE47F2B4C2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{659247FA-E3AB-4AFE-9E1B-B96DFE3B747A} = {54F43D7F-F804-4970-92E0-0FE4C6FEE2E8}
 		{4E081A56-E6BE-4046-B3E8-FE80C11A1B17} = {54F43D7F-F804-4970-92E0-0FE4C6FEE2E8}
 		{DB993E1E-02DF-463F-BF5A-2EC154D57289} = {54F43D7F-F804-4970-92E0-0FE4C6FEE2E8}
+		{6DD55628-813A-463D-A26E-9DE47F2B4C2F} = {54F43D7F-F804-4970-92E0-0FE4C6FEE2E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C58FD1C-5110-476B-88E7-DDD8B08DCE17}
