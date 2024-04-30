@@ -1,6 +1,5 @@
 ﻿using FastFoodTotem.Domain.Contracts.Repositories;
 using FastFoodTotem.Domain.Entities;
-using FastFoodTotem.Domain.Enums;
 using FastFoodTotem.Infra.SqlServer.Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,34 +29,9 @@ namespace FastFoodTotem.Infra.SqlServer.Repositories
          => await Data
             .Include(x => x.OrderedItems)
             .ThenInclude(x => x.Product)
-            .OrderBy(x => x.Status)
             .ToListAsync(cancellationToken);
 
         public async Task<OrderEntity?> GetOrderAsync(int orderId, CancellationToken cancellationToken)
             => await Data.Include(x => x.OrderedItems).ThenInclude(x => x.Product).FirstOrDefaultAsync(x => x.Id == orderId);
-
-        public async Task<IEnumerable<OrderEntity>> GetOrderByStatus(OrderStatus status, CancellationToken cancellationToken)
-        {
-            return await
-                    Data
-                    .Include(x => x.OrderedItems)
-                    .ThenInclude(x => x.Product)
-                    .Where(x => x.Status == status)
-                    .ToListAsync();
-        }
-
-        public async Task<IEnumerable<OrderEntity>> GetPendingOrders(CancellationToken cancellationToken)
-        {
-            return await Data
-                .Where(x => x.Status == OrderStatus.Received
-                         || x.Status == OrderStatus.InPreparation
-                         || x.Status == OrderStatus.Ready)
-                .OrderByDescending(x => x.Status)
-                .ThenBy(x => x.CreationDate)
-                .Include(x => x.OrderedItems)
-                .ThenInclude(x => x.Product)
-                .ToListAsync(cancellationToken);
-
-        }
     }
 }

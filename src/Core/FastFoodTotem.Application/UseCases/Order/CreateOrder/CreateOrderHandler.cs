@@ -44,11 +44,15 @@ public class CreateOrderHandler : IRequestHandler<CreateOrderRequest, CreateOrde
 
         await _orderRepository.AddOrderAsync(orderEntity, cancellationToken);
 
+        var orderPayment = await _orderPayment.GerarQRCodeParaPagamentoDePedido(orderEntity, request.PaymentAccessToken);
+        orderEntity.InStoreOrderId = orderPayment[1];
+
+        await _orderRepository.EditOrderAsync(orderEntity, cancellationToken);
+
         var response = new CreateOrderResponse()
         {
             Id = orderEntity.Id,
-            PaymentQrCode = await _orderPayment.GerarQRCodeParaPagamentoDePedido(orderEntity, request.PaymentAccessToken),
-            Status = orderEntity.Status,
+            PaymentQrCode = orderPayment[0],
             TotalPrice = orderEntity.GetTotal()
         };
 

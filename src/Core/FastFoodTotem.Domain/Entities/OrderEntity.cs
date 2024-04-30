@@ -9,25 +9,11 @@ namespace FastFoodTotem.Domain.Entities
         public int Id { get; set; }
         public string? UserCpf { get; set; }
         public string? UserName { get; set; }
-        public OrderStatus Status { get; set; } = OrderStatus.AwaitingPayment;
         public DateTime CreationDate { get; set; } = DateTime.UtcNow;
 
         public IEnumerable<OrderedItemEntity> OrderedItems { get; set; }
 
-        public bool ValidStatus(OrderStatus orderStatus)
-        {
-            if (NewStatusIsLowerOrEqualCurrentStatus()) return false;
-
-            if (NewStatusIsSkippingSteps()) return false;
-
-            return true;
-
-            bool NewStatusIsLowerOrEqualCurrentStatus()
-            => orderStatus <= Status;
-
-            bool NewStatusIsSkippingSteps()
-            => Status + 1 != orderStatus;
-        }
+        public string? InStoreOrderId { get; set; }
 
         public decimal GetTotal()
         => OrderedItems.Sum(item => item.GetTotal());

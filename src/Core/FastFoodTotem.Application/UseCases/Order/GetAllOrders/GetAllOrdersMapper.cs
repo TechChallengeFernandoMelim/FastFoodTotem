@@ -10,7 +10,6 @@ public class GetAllOrdersMapper : Profile
     {
         CreateMap<OrderEntity, GetAllOrdersOrder>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
             .ForMember(dest => dest.UserCpf, opt => opt.MapFrom(src => src.UserCpf))
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => MapOrderedItems(src.OrderedItems)));

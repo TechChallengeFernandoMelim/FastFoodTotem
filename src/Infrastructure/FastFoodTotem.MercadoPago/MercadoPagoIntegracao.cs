@@ -18,7 +18,7 @@ public class MercadoPagoPayment : IOrderPayment
         _paymentServiceUrl = config.GetSection("PaymentServiceUrl").Value ?? throw new ArgumentNullException("Null Access token");
     }
 
-    public async Task<string> GerarQRCodeParaPagamentoDePedido(OrderEntity orderEntity, string accesstoken)
+    public async Task<string[]> GerarQRCodeParaPagamentoDePedido(OrderEntity orderEntity, string accesstoken)
     {
         var request = new GerarQRCodeRequest()
         {
@@ -49,7 +49,8 @@ public class MercadoPagoPayment : IOrderPayment
             if (result.IsSuccessStatusCode)
             {
                 var resultString = await result.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<GerarQRCodeResponse>(resultString).QrData;
+                var responseAsObject = JsonConvert.DeserializeObject<GerarQRCodeResponse>(resultString);
+                return new string[] { responseAsObject.QrData, responseAsObject.InStoreOrderId };
             }
 
             return null;

@@ -15,7 +15,7 @@ public class OrderEntityMapper
             x.HasKey(c => c.Id).HasName("OrderId");
             x.Property(c => c.Id).HasColumnName("Id").ValueGeneratedOnAdd();
             x.Property(c => c.CreationDate).HasColumnName("CreationDate");
-            x.Property(c => c.Status).HasColumnName("Status");
+            x.Property(c => c.InStoreOrderId).HasColumnName("InStoreOrderId");
 
             x.HasMany(c => c.OrderedItems)
             .WithOne(u => u.Order)
