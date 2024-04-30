@@ -47,7 +47,7 @@ public class CreateOrderHandler : IRequestHandler<CreateOrderRequest, CreateOrde
         var response = new CreateOrderResponse()
         {
             Id = orderEntity.Id,
-            PaymentQrCode = await _orderPayment.GerarQRCodeParaPagamentoDePedido(orderEntity),
+            PaymentQrCode = await _orderPayment.GerarQRCodeParaPagamentoDePedido(orderEntity, request.PaymentAccessToken),
             Status = orderEntity.Status,
             TotalPrice = orderEntity.GetTotal()
         };
