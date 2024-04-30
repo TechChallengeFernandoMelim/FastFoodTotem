@@ -43,26 +43,31 @@ spec:
               secretKeyRef:
                 name: fast-food-totem-api-secret
                 key: ConnectionStrings__SqlServerConnection
-          - name: MercadoPago__AccessToken
+          - name: PaymentServiceUrl
             valueFrom:
               secretKeyRef:
                 name: fast-food-totem-api-secret
-                key: MercadoPago__AccessToken
-          - name: MercadoPago__BaseUrl
+                key: PaymentServiceUrl
+          - name: AWS_SQS
             valueFrom:
               secretKeyRef:
                 name: fast-food-totem-api-secret
-                key: MercadoPago__BaseUrl
-          - name: MercadoPago__UserId
+                key: AWS_SQS
+          - name: AWS_SQS_GROUP_ID
             valueFrom:
               secretKeyRef:
                 name: fast-food-totem-api-secret
-                key: MercadoPago__UserId
-          - name: MercadoPago__ExternalPosId
+                key: AWS_SQS_GROUP_ID
+          - name: AWS_ACCESS_KEY_DYNAMO
             valueFrom:
               secretKeyRef:
                 name: fast-food-totem-api-secret
-                key: MercadoPago__ExternalPosId
+                key: AWS_ACCESS_KEY_DYNAMO
+          - name: AWS_SECRET_KEY_DYNAMO
+            valueFrom:
+              secretKeyRef:
+                name: fast-food-totem-api-secret
+                key: AWS_SECRET_KEY_DYNAMO
   replicas: 1
   selector:
     matchLabels:

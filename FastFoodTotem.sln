@@ -28,9 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{C91A998B-C5C
 		k8s\api-hpa.yaml = k8s\api-hpa.yaml
 		k8s\api-secret.yaml = k8s\api-secret.yaml
 		k8s\api-service.yaml = k8s\api-service.yaml
-		k8s\db-deployment.yaml = k8s\db-deployment.yaml
-		k8s\db-secret.yaml = k8s\db-secret.yaml
-		k8s\db-service.yaml = k8s\db-service.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stress", "stress", "{42AAE90A-0E28-46C7-AA45-37F72AF64B34}"
@@ -50,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodTotem.Infra.SqlServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodTotem.MercadoPago", "src\Infrastructure\FastFoodTotem.MercadoPago\FastFoodTotem.MercadoPago.csproj", "{DB993E1E-02DF-463F-BF5A-2EC154D57289}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodTotem.Logger", "src\Infrastructure\FastFoodTotem.Logger\FastFoodTotem.Logger.csproj", "{6DD55628-813A-463D-A26E-9DE47F2B4C2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodTotem.Logger", "src\Infrastructure\FastFoodTotem.Logger\FastFoodTotem.Logger.csproj", "{6DD55628-813A-463D-A26E-9DE47F2B4C2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
