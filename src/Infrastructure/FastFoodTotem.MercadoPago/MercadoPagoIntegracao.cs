@@ -1,4 +1,5 @@
-﻿using FastFoodTotem.Domain.Contracts.Payments;
+﻿using Azure.Core;
+using FastFoodTotem.Domain.Contracts.Payments;
 using FastFoodTotem.Domain.Entities;
 using FastFoodTotem.MercadoPago.Dtos.Request;
 using FastFoodTotem.MercadoPago.Dtos.Response;
@@ -17,7 +18,7 @@ public class MercadoPagoPayment : IOrderPayment
         _paymentServiceUrl = config.GetSection("PaymentServiceUrl").Value ?? throw new ArgumentNullException("Null Access token");
     }
 
-    public async Task<string> GerarQRCodeParaPagamentoDePedido(OrderEntity orderEntity)
+    public async Task<string> GerarQRCodeParaPagamentoDePedido(OrderEntity orderEntity, string accesstoken)
     {
         var request = new GerarQRCodeRequest()
         {
@@ -40,6 +41,7 @@ public class MercadoPagoPayment : IOrderPayment
         {
             httpRequest.BaseAddress = new Uri(_paymentServiceUrl);
             httpRequest.DefaultRequestHeaders.Clear();
+            httpRequest.DefaultRequestHeaders.Add("Authorization", $"Bearer {accesstoken}");
 
             var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
             var result = await httpRequest.PostAsync($"/CreatePayment", content);
