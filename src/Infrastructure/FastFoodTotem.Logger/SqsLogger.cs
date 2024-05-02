@@ -13,8 +13,8 @@ public class SqsLogger : Domain.Contracts.Loggers.ILogger
     public SqsLogger(AmazonSQSClient sqsClient, IConfiguration configuration)
     {
         _sqsClient = sqsClient;
-        _awsSqs = configuration.GetRequiredSection("AWS_SQS").Value;
-        _awsSqsGroupId = configuration.GetRequiredSection("AWS_SQS_GROUP_ID").Value;
+        _awsSqs = Environment.GetEnvironmentVariable("AWS_SQS");
+        _awsSqsGroupId = Environment.GetEnvironmentVariable("AWS_SQS_GROUP_ID");
     }
 
     public async Task Log(string stackTrace, string message, string exception)

@@ -37,8 +37,8 @@ public static class DependencyInjection
 
     private static void ConfigureSQS(IServiceCollection services, IConfiguration configuration)
     {
-        string accessKey = configuration.GetRequiredSection("AWS_ACCESS_KEY_DYNAMO").Value;
-        string secretKey = configuration.GetRequiredSection("AWS_SECRET_KEY_DYNAMO").Value;
+        string accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_DYNAMO");
+        string secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_KEY_DYNAMO");
 
         AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
         var sqsClient = new AmazonSQSClient(credentials, RegionEndpoint.USEast1);
@@ -62,7 +62,8 @@ public static class DependencyInjection
 
     private static void ConfigureDatabase(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<FastFoodContext>(options => options.UseSqlServer(configuration.GetConnectionString(ConstantsEnv.CONNECTION_STRING),
+        var conStr = Environment.GetEnvironmentVariable("SqlServerConnection");
+        services.AddDbContext<FastFoodContext>(options => options.UseSqlServer(conStr,
                                                      b => b.MigrationsAssembly("FastFoodTotem.Infra.SqlServer")));
     }
 

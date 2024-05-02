@@ -15,7 +15,7 @@ public class MercadoPagoPayment : IOrderPayment
 
     public MercadoPagoPayment(IConfiguration config)
     {
-        _paymentServiceUrl = config.GetSection("PaymentServiceUrl").Value ?? throw new ArgumentNullException("Null Access token");
+        _paymentServiceUrl = Environment.GetEnvironmentVariable("PaymentServiceUrl");
     }
 
     public async Task<string[]> GerarQRCodeParaPagamentoDePedido(OrderEntity orderEntity, string accesstoken)

@@ -1,7 +1,6 @@
 using FastFoodTotem.Api.HealthCheck;
 using FastFoodTotem.Api.Middlewares;
 using FastFoodTotem.Domain;
-using FastFoodTotem.Domain.Validations;
 using FastFoodTotem.Infra.IoC;
 using FastFoodTotem.Infra.SqlServer.Database;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -32,10 +31,12 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
 });
 
-var conStr = builder.Configuration.GetConnectionString(ConstantsEnv.CONNECTION_STRING);
+builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
+
+var conStr = Environment.GetEnvironmentVariable("SqlServerConnection");
 if (string.IsNullOrWhiteSpace(conStr))
     throw new InvalidOperationException(
-        $"Could not find a connection string named '{ConstantsEnv.CONNECTION_STRING}'.");
+        $"Could not find a connection string named 'SqlServerConnection'.");
 
 builder.Services
     .AddEndpointsApiExplorer()

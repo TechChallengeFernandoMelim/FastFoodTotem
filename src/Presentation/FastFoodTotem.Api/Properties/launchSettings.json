@@ -18,12 +18,18 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Docker": {
+    "Container (Dockerfile)": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
-        "ASPNETCORE_URLS": "https://+:443;http://+:80"
+        "ASPNETCORE_URLS": "https://+:443;http://+:80",
+        "SqlServerConnection": "Server=;Database=FastFoodTotem;User Id=sa;Password=Fernando9+;MultipleActiveResultSets=true;TrustServerCertificate=true;",
+        "PaymentServiceUrl": "https://localhost:32782/",
+        "AWS_SQS": "https://sqs.us-east-1.amazonaws.com/817549174499/LogQueue.fifo",
+        "AWS_SQS_GROUP_ID": "LogQueue.fifo",
+        "AWS_ACCESS_KEY_DYNAMO": "",
+        "AWS_SECRET_KEY_DYNAMO": ""
       },
       "publishAllPorts": true,
       "useSSL": true
