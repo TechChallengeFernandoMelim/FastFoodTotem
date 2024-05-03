@@ -7,4 +7,6 @@ public sealed record CreateOrderResponse
     public int Id { get; set; }
     public string PaymentQrCode { get; set; }
     public decimal TotalPrice { get; set; }
+
+    public string? InStoreOrderId { get; set; }
 }

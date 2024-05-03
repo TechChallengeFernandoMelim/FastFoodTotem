@@ -53,7 +53,8 @@ public class CreateOrderHandler : IRequestHandler<CreateOrderRequest, CreateOrde
         {
             Id = orderEntity.Id,
             PaymentQrCode = orderPayment[0],
-            TotalPrice = orderEntity.GetTotal()
+            TotalPrice = orderEntity.GetTotal(),
+            InStoreOrderId = orderPayment[1]
         };
 
         return response;
