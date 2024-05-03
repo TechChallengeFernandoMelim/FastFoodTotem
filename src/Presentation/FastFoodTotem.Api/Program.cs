@@ -9,34 +9,8 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.ConfigureAppConfiguration((hostContext, config) =>
-{
-    const string fileSettingsName = "appsettings";
-    config
-        .AddUserSecrets<Program>(optional: true)
-        .AddJsonFile($"{fileSettingsName}.json", optional: false, reloadOnChange: true)
-        .AddJsonFile($"{fileSettingsName}.{hostContext.HostingEnvironment.EnvironmentName}.json")
-        .AddEnvironmentVariables();
-});
-
-builder.Host.ConfigureLogging(logging =>
-{
-    logging
-        .ClearProviders()
-        .AddConsole();
-});
-
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
-});
-
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
 
-var conStr = Environment.GetEnvironmentVariable("SqlServerConnection");
-if (string.IsNullOrWhiteSpace(conStr))
-    throw new InvalidOperationException(
-        $"Could not find a connection string named 'SqlServerConnection'.");
 
 builder.Services
     .AddEndpointsApiExplorer()
@@ -63,15 +37,13 @@ builder.Services
         options.ReportApiVersions = true;
         options.AssumeDefaultVersionWhenUnspecified = true;
         options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
-    })
-    .AddHealthChecks()
-    .AddCheck<SimpleHealthCheck>(
-        "HealthCheck",
-        tags: new[] { "HealthCheck" })
-    .AddSqlServer(conStr);
+    });
 
 builder.Services.ConfigureServices(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -90,22 +62,12 @@ app.UseAuthorization();
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
-app.UseEndpoints(endpoints =>
-{
-    app.MapHealthChecks("health/readiness", new HealthCheckOptions
-    {
-        Predicate = healthCheck => healthCheck.Tags.Contains("HealthCheck"),
-    });
 
-    app.MapHealthChecks("health/liveness", new HealthCheckOptions
-    {
-        Predicate = healthCheck => healthCheck.Tags.Contains("HealthCheck"),
-    });
 
-    endpoints.MapControllers();
-});
-
+app.MapControllers();
 app.UseHttpsRedirection();
+
+app.MapGet("/", () => "Welcome to running ASP.NET Core Minimal API on AWS Lambda");
 
 app.MapControllerRoute(name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

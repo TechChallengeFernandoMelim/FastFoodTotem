@@ -5,7 +5,13 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SqlServerConnection": "Server=mydb.cbyylakdrivs.us-east-1.rds.amazonaws.com,1433;Database=FastFoodTotem;User Id=sa;Password=Fernando9+;MultipleActiveResultSets=true;TrustServerCertificate=true;",
+        "PaymentServiceUrl": "https://localhost:32782/",
+        "AWS_SQS": "https://sqs.us-east-1.amazonaws.com/817549174499/LogQueue.fifo",
+        "AWS_SQS_GROUP_ID": "LogQueue.fifo",
+        "AWS_ACCESS_KEY_DYNAMO": "",
+        "AWS_SECRET_KEY_DYNAMO": ""
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:443;http://localhost:80"
@@ -24,7 +30,7 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
-        "SqlServerConnection": "Server=;Database=FastFoodTotem;User Id=sa;Password=Fernando9+;MultipleActiveResultSets=true;TrustServerCertificate=true;",
+        "SqlServerConnection": "Server=mydb.cbyylakdrivs.us-east-1.rds.amazonaws.com,1433;Database=FastFoodTotem;User Id=sa;Password=Fernando9+;MultipleActiveResultSets=true;TrustServerCertificate=true;",
         "PaymentServiceUrl": "https://localhost:32782/",
         "AWS_SQS": "https://sqs.us-east-1.amazonaws.com/817549174499/LogQueue.fifo",
         "AWS_SQS_GROUP_ID": "LogQueue.fifo",
@@ -33,6 +39,12 @@
       },
       "publishAllPorts": true,
       "useSSL": true
+    },
+    "Mock Lambda Test Tool": {
+      "commandName": "Executable",
+      "commandLineArgs": "--port 5050",
+      "workingDirectory": ".\\bin\\$(Configuration)\\net6.0",
+      "executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-6.0.exe"
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json",

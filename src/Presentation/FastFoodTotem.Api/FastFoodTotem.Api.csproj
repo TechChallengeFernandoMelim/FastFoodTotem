@@ -8,7 +8,8 @@
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<DockerfileContext>..\..\..</DockerfileContext>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>$(NoWarn);1591</NoWarn>
+		<AWSProjectType>Lambda</AWSProjectType>
+		<UserSecretsId>d3cc7e3a-8746-4506-9a37-cb0e6a3df4b8</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
