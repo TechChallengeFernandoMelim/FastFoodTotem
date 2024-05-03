@@ -6,7 +6,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "SqlServerConnection": "",
+        "SqlServerConnection": "Server=;Database=FastFoodTotem;User Id=;Password=;MultipleActiveResultSets=true;TrustServerCertificate=true;",
         "PaymentServiceUrl": "https://localhost:32782/",
         "AWS_SQS": "https://sqs.us-east-1.amazonaws.com/817549174499/LogQueue.fifo",
         "AWS_SQS_GROUP_ID": "LogQueue.fifo",
@@ -30,7 +30,7 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
-        "SqlServerConnection": "",
+        "SqlServerConnection": "Server=;Database=FastFoodTotem;User Id=;Password=;MultipleActiveResultSets=true;TrustServerCertificate=true;",
         "PaymentServiceUrl": "https://localhost:32782/",
         "AWS_SQS_LOG": "https://sqs.us-east-1.amazonaws.com/817549174499/LogQueue.fifo",
         "AWS_SQS_GROUP_ID_LOG": "LogQueue.fifo",
