@@ -17,6 +17,7 @@ public class GetAllOrdersHandlerTests
             new OrderEntity { Id = 1, UserCpf = "12345678900", UserName = "John Doe", OrderedItems = new List<OrderedItemEntity>(), CreationDate = DateTime.Now },
             new OrderEntity { Id = 2, UserCpf = "98765432100", UserName = "Jane Smith", OrderedItems = new List<OrderedItemEntity>(), CreationDate = DateTime.Now }
         };
+        var mapperr = new GetAllOrdersMapper();
         var orders = new List<GetAllOrdersOrder>
         {
             new GetAllOrdersOrder { Id = 1, UserCpf = "12345678900", UserName = "John Doe"},

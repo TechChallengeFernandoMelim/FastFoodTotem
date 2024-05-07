@@ -15,6 +15,7 @@ public class GetProductByCategoryHandlerTests
         var productRepositoryMock = new Mock<IProductRepository>();
         var mapperMock = new Mock<IMapper>();
         var validator = new GetProductByCategoryValidator();
+        var mapper = new GetProductByCategoryMapper();
         var request = new GetProductByCategoryRequest(FastFoodTotem.Domain.Enums.CategoryType.Burguer);
         var products = new List<ProductEntity>
             {

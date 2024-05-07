@@ -19,7 +19,7 @@ public class DeleteProductHandlerTests
         var request = new DeleteProductRequest(1);
         var validator = new DeleteProductValidator();
         var productEntity = new ProductEntity { Id = 1, Name = "Burger", Type = FastFoodTotem.Domain.Enums.CategoryType.Burguer, Price = 10, Description = "Delicious burger", ProductImageUrl = "burger.jpg" };
-
+        var mapper = new DeleteProductMapper();
         productRepositoryMock.Setup(r => r.GetProduct(request.ProductId, CancellationToken.None)).ReturnsAsync(productEntity);
 
         var handler = new DeleteProductHandler(productRepositoryMock.Object, mapperMock.Object);

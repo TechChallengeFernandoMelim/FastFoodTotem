@@ -17,6 +17,7 @@ public class CreateProductHandlerTests
 
         var request = new CreateProductRequest("Burger", FastFoodTotem.Domain.Enums.CategoryType.Burguer, 10, "Delicious burger", "burger.jpg");
         var productEntity = new ProductEntity { Name = "Burger", Type = FastFoodTotem.Domain.Enums.CategoryType.Burguer, Price = 10, Description = "Delicious burger", ProductImageUrl = "burger.jpg" };
+        var mapper = new CreateProductMapper();
         var createProductResponse = new CreateProductResponse { Id = 1, Name = "Burger", Type = FastFoodTotem.Domain.Enums.CategoryType.Burguer, Price = 10, Description = "Delicious burger", ProductImageUrl = "burger.jpg" };
 
         mapperMock.Setup(m => m.Map<ProductEntity>(request)).Returns(productEntity);

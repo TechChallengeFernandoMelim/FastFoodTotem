@@ -22,6 +22,7 @@ public class GetOrderByIdHandlerTests
             OrderedItems = new[] { new OrderedItemEntity { ProductId = 1, Amount = 2 } },
             CreationDate = DateTime.Now
         };
+        var mapperr = new GetOrderByIdMapper();
         var getOrderByIdResponse = new GetOrderByIdResponse
         {
             Id = orderId,

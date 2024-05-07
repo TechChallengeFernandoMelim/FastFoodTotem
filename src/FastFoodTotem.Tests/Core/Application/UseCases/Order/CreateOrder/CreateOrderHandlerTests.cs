@@ -24,6 +24,7 @@ public class CreateOrderHandlerTests
                 },
             // Add more request properties as needed
         };
+        var mapperr = new CreateOrderMapper();
         var orderEntity = new OrderEntity
         {
             Id = 1,

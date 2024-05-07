@@ -26,7 +26,7 @@ public class EditProductHandlerTests
         // Arrange
         var request = new EditProductRequest(1, "Burger", FastFoodTotem.Domain.Enums.CategoryType.Burguer, 10, "Delicious burger", "burger.jpg");
         var productEntity = new ProductEntity { Id = 1, Name = "Old Name", Type = FastFoodTotem.Domain.Enums.CategoryType.Drink, Price = 5 };
-
+        var mapper = new EditProductMapper();
         _mockMapper.Setup(x => x.Map<ProductEntity>(request)).Returns(productEntity);
         _mockProductRepository.Setup(x => x.GetProduct(1, default)).ReturnsAsync(productEntity);
         _mockMapper.Setup(x => x.Map<EditProductResponse>(It.IsAny<ProductEntity>())).Returns(new EditProductResponse

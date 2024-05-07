@@ -3,7 +3,7 @@ using FastFoodTotem.Domain.Entities;
 
 namespace FastFoodTotem.Application.UseCases.Product.EditProduct;
 
-internal class EditProductMapper : Profile
+public class EditProductMapper : Profile
 {
     public EditProductMapper()
     {
