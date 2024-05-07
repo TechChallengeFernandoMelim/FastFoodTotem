@@ -30,5 +30,8 @@
 	  <ProjectReference Include="..\..\Infrastructure\FastFoodTotem.Infra.IoC\FastFoodTotem.Infra.IoC.csproj" />
 	</ItemGroup>
 
+	<PropertyGroup>
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</PropertyGroup>
 
 </Project>

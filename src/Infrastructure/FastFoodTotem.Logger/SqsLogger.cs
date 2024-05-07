@@ -10,7 +10,7 @@ public class SqsLogger : Domain.Contracts.Loggers.ILogger
     private readonly string _awsSqs;
     private readonly string _awsSqsGroupId;
 
-    public SqsLogger(AmazonSQSClient sqsClient, IConfiguration configuration)
+    public SqsLogger(AmazonSQSClient sqsClient)
     {
         _sqsClient = sqsClient;
         _awsSqs = Environment.GetEnvironmentVariable("AWS_SQS_LOG");

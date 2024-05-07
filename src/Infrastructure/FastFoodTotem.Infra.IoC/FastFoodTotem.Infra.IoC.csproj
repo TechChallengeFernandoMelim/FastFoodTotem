@@ -21,4 +21,8 @@
 		<ProjectReference Include="..\FastFoodTotem.Logger\FastFoodTotem.Logger.csproj" />
 	</ItemGroup>
 
+	<PropertyGroup>
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</PropertyGroup>
+	
 </Project>

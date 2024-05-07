@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\Core\FastFoodTotem.Domain\FastFoodTotem.Domain.csproj" />
   </ItemGroup>
 
+	<PropertyGroup>
+		<SonarQubeExclude>true</SonarQubeExclude>
+	</PropertyGroup>
+
 </Project>

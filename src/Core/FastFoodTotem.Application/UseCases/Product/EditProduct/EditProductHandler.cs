@@ -6,7 +6,7 @@ using MediatR;
 
 namespace FastFoodTotem.Application.UseCases.Product.EditProduct;
 
-internal class EditProductHandler : IRequestHandler<EditProductRequest, EditProductResponse>
+public class EditProductHandler : IRequestHandler<EditProductRequest, EditProductResponse>
 {
     private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
