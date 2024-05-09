@@ -15,7 +15,7 @@ public class MercadoPagoPayment : IOrderPayment
 
     public MercadoPagoPayment(IConfiguration config)
     {
-        _paymentServiceUrl = Environment.GetEnvironmentVariable("PaymentServiceUrl");
+        _paymentServiceUrl = Environment.GetEnvironmentVariable("PaymentServiceUrl").Replace("$", "");
     }
 
     public async Task<string[]> GerarQRCodeParaPagamentoDePedido(OrderEntity orderEntity, string accesstoken)
@@ -53,7 +53,7 @@ public class MercadoPagoPayment : IOrderPayment
                 return new string[] { responseAsObject.QrData, responseAsObject.InStoreOrderId };
             }
 
-            throw new Exception($"Resposta inválida do serviço de pagamento. Resposta: ${result}. Response: {await result.Content.ReadAsStringAsync()}. PaymentUrl: ${_paymentServiceUrl}. HttpRequest: ${httpRequest.BaseAddress}, ${httpRequest.DefaultRequestHeaders}");
+            throw new Exception($"Resposta inválida do serviço de pagamento. Resposta: ${result}. Response: {await result.Content.ReadAsStringAsync()}. PaymentUrl: ${_paymentServiceUrl}. HttpRequest: ${httpRequest.BaseAddress}, DefaultRequestHeaders: ${httpRequest.DefaultRequestHeaders}");
         }
     }
 }

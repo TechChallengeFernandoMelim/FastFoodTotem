@@ -37,7 +37,7 @@ namespace FastFoodTotem.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest createOrderRequest, CancellationToken cancellationToken)
         {
-            createOrderRequest.PaymentAccessToken = Request.Headers["Authorization"];
+            createOrderRequest.PaymentAccessToken = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
             var data = await _mediator.Send(createOrderRequest, cancellationToken);
             return await Return(new ApiBaseResponse<CreateOrderResponse>() { Data = data });
         }
