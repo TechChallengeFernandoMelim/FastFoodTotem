@@ -53,7 +53,7 @@ public class MercadoPagoPayment : IOrderPayment
                 return new string[] { responseAsObject.QrData, responseAsObject.InStoreOrderId };
             }
 
-            return null;
+            throw new Exception($"Resposta inválida do serviço de pagamento. Resposta: ${result}. Response: {await result.Content.ReadAsStringAsync()}");
         }
     }
 }
