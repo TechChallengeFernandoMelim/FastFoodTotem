@@ -49,3 +49,21 @@ Conforme foi solicitado, estou postando aqui as evidências de cobertura dos tes
 ![Coverage2](./images/coverage2.png)
 
 Através das imagens é possível observar que a cobertura por testes unitários ficou superior a 80%, conforme solicitado.
+
+## Endpoints
+
+Os endpoints presentes nesse projeto estão separados em 2 contextos: produto e pedido.
+
+### Produto
+
+- POST /Product: responsável para criar um produto que estará disponível para venda.
+- PUT /Product: responsável por editar um produto já existente
+- DELETE /Product/{productId}: responsável por deletar um produto e torná-lo indisponível para venda. 
+- GET /Product/category/{type}: responsável por obter um produto utilizando as categorias "Burguer = 1", "Accompaniment = 2", "Drink = 3" ou "Dessert = 4".
+
+### Pedido
+
+- POST /Order: responsável por criar um pedido e retornar QR code para pagamento.
+- GET /Order/{orderId}: responsável por obter os dados de um pedido específico.
+- GET /Order/GetAllOrders: responsável por obter todos os pedidos existentes.
+
