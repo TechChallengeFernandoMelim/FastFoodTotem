@@ -56,14 +56,14 @@ Os endpoints presentes nesse projeto estão separados em 2 contextos: produto e 
 
 ### Produto
 
-- POST /Product: responsável para criar um produto que estará disponível para venda.
-- PUT /Product: responsável por editar um produto já existente
-- DELETE /Product/{productId}: responsável por deletar um produto e torná-lo indisponível para venda. 
-- GET /Product/category/{type}: responsável por obter um produto utilizando as categorias "Burguer = 1", "Accompaniment = 2", "Drink = 3" ou "Dessert = 4".
+- POST /v1/Product: responsável para criar um produto que estará disponível para venda.
+- PUT /v1/Product: responsável por editar um produto já existente
+- DELETE /v1/Product/{productId}: responsável por deletar um produto e torná-lo indisponível para venda. 
+- GET /v1/Product/category/{type}: responsável por obter um produto utilizando as categorias "Burguer = 1", "Accompaniment = 2", "Drink = 3" ou "Dessert = 4".
 
 ### Pedido
 
-- POST /Order: responsável por criar um pedido e retornar QR code para pagamento.
-- GET /Order/{orderId}: responsável por obter os dados de um pedido específico.
-- GET /Order/GetAllOrders: responsável por obter todos os pedidos existentes.
+- POST /v1/Order: responsável por criar um pedido e retornar QR code para pagamento.
+- GET /v1/Order/{orderId}: responsável por obter os dados de um pedido específico.
+- GET /v1/Order/GetAllOrders: responsável por obter todos os pedidos existentes.
 
