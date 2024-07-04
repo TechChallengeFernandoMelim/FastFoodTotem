@@ -1,6 +1,7 @@
 ﻿using FastFoodTotem.Api.Controllers.Base;
 using FastFoodTotem.Application.Shared.BaseResponse;
 using FastFoodTotem.Application.UseCases.Order.CreateOrder;
+using FastFoodTotem.Application.UseCases.Order.DeleteUserData;
 using FastFoodTotem.Application.UseCases.Order.GetAllOrders;
 using FastFoodTotem.Application.UseCases.Order.GetOrderById;
 using FastFoodTotem.Domain.Validations;
@@ -70,6 +71,18 @@ namespace FastFoodTotem.Api.Controllers
         {
             var data = await _mediator.Send(new GetAllOrdersRequest(), cancellationToken);
             return await Return(new ApiBaseResponse<GetAllOrdersResponse>() { Data = data });
+        }
+
+        /// <summary>
+        /// Delete user data
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns>The order requested</returns>
+        [HttpDelete("DeleteUserData/{cpf}")]
+        public async Task<IActionResult> DeleteUserData([FromRoute] string cpf, CancellationToken cancellationToken)
+        {
+            var data = await _mediator.Send(new DeleteUserDataRequest(cpf), cancellationToken);
+            return await Return(new ApiBaseResponse<DeleteUserDataResponse>() { });
         }
     }
 }

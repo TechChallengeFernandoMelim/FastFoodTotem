@@ -33,5 +33,17 @@ namespace FastFoodTotem.Infra.SqlServer.Repositories
 
         public async Task<OrderEntity?> GetOrderAsync(int orderId, CancellationToken cancellationToken)
             => await Data.Include(x => x.OrderedItems).ThenInclude(x => x.Product).FirstOrDefaultAsync(x => x.Id == orderId);
+
+        public async Task DeleteUserDataByCpf(string cpf, CancellationToken cancellationToken)
+        {
+            var userOrders = Data.Where(x => x.UserCpf == cpf);
+
+            foreach (var item in userOrders)
+            {
+                item.UserCpf = string.Empty;
+            }
+
+            await SaveChangesAsync(cancellationToken);
+        }
     }
 }
