@@ -46,7 +46,7 @@ public class MercadoPagoPayment : IOrderPayment
                 httpRequest.DefaultRequestHeaders.Add("Authorization", $"{accesstoken}");
 
             var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
-            var result = await httpRequest.PostAsync("/CreatePayment", content);
+            var result = await httpRequest.PostAsync("/ApiGatewayStage/CreatePayment", content);
 
             if (result.IsSuccessStatusCode)
             {
