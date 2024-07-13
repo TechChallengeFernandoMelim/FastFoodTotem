@@ -44,19 +44,26 @@ public class CreateOrderHandler : IRequestHandler<CreateOrderRequest, CreateOrde
 
         await _orderRepository.AddOrderAsync(orderEntity, cancellationToken);
 
-        var orderPayment = await _orderPayment.GerarQRCodeParaPagamentoDePedido(orderEntity, request.PaymentAccessToken);
-        orderEntity.InStoreOrderId = orderPayment[1];
-
-        await _orderRepository.EditOrderAsync(orderEntity, cancellationToken);
-
-        var response = new CreateOrderResponse()
+        try
         {
-            Id = orderEntity.Id,
-            PaymentQrCode = orderPayment[0],
-            TotalPrice = orderEntity.GetTotal(),
-            InStoreOrderId = orderPayment[1]
-        };
+            var orderPayment = await _orderPayment.GerarQRCodeParaPagamentoDePedido(orderEntity, request.PaymentAccessToken);
+            orderEntity.InStoreOrderId = orderPayment[1];
+            await _orderRepository.EditOrderAsync(orderEntity, cancellationToken);
 
-        return response;
+            var response = new CreateOrderResponse()
+            {
+                Id = orderEntity.Id,
+                PaymentQrCode = orderPayment[0],
+                TotalPrice = orderEntity.GetTotal(),
+                InStoreOrderId = orderPayment[1]
+            };
+
+            return response;
+        }
+        catch (Exception ex)
+        {
+            await _orderRepository.DeleteOrderById(orderEntity.Id, cancellationToken);
+            throw;
+        }
     }
 }

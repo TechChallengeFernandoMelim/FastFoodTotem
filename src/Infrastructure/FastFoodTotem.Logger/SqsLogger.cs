@@ -20,13 +20,13 @@ public class SqsLogger : Domain.Contracts.Loggers.ILogger
     public async Task Log(string stackTrace, string message, string exception)
     {
         Dictionary<string, MessageAttributeValue> messageAttributes = new Dictionary<string, MessageAttributeValue>
-    {
-        { "Service",   new MessageAttributeValue { DataType = "String", StringValue = "FastFoodTotem" } },
-        { "StackTrace",   new MessageAttributeValue { DataType = "String", StringValue = stackTrace } },
-        { "ExceptionMessage",  new MessageAttributeValue { DataType = "String", StringValue = message } },
-        { "Ex", new MessageAttributeValue { DataType = "String", StringValue = exception } },
-        { "Time", new MessageAttributeValue { DataType = "String", StringValue = DateTime.Now.ToString() } }
-    };
+        {
+            { "Service",   new MessageAttributeValue { DataType = "String", StringValue = "FastFoodTotem" } },
+            { "StackTrace",   new MessageAttributeValue { DataType = "String", StringValue = stackTrace } },
+            { "ExceptionMessage",  new MessageAttributeValue { DataType = "String", StringValue = message } },
+            { "Ex", new MessageAttributeValue { DataType = "String", StringValue = exception } },
+            { "Time", new MessageAttributeValue { DataType = "String", StringValue = DateTime.Now.ToString() } }
+        };
 
         var sendMessageRequest = new SendMessageRequest
         {

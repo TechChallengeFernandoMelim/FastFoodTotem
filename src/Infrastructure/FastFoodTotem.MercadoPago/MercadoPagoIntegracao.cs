@@ -41,10 +41,12 @@ public class MercadoPagoPayment : IOrderPayment
         {
             httpRequest.BaseAddress = new Uri(_paymentServiceUrl);
             httpRequest.DefaultRequestHeaders.Clear();
-            httpRequest.DefaultRequestHeaders.Add("Authorization", $"{accesstoken}");
+
+            if(!string.IsNullOrEmpty(accesstoken))
+                httpRequest.DefaultRequestHeaders.Add("Authorization", $"{accesstoken}");
 
             var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
-            var result = await httpRequest.PostAsync("/ApiGatewayStage/CreatePayment", content);
+            var result = await httpRequest.PostAsync("/CreatePayment", content);
 
             if (result.IsSuccessStatusCode)
             {

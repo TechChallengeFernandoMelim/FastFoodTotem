@@ -78,6 +78,11 @@ namespace FastFoodTotem.Api.Controllers
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns>The order requested</returns>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiBaseResponse<DeleteUserDataResponse>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ApiBaseResponse))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ApiBaseResponse))]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(ApiBaseResponse<DeleteUserDataResponse>))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ApiBaseResponse))]
         [HttpDelete("DeleteUserData/{cpf}")]
         public async Task<IActionResult> DeleteUserData([FromRoute] string cpf, CancellationToken cancellationToken)
         {

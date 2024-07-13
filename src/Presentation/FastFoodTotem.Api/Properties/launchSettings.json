@@ -6,10 +6,10 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "SqlServerConnection": "Server=;Database=FastFoodTotem;User Id=;Password=;MultipleActiveResultSets=true;TrustServerCertificate=true;",
-        "PaymentServiceUrl": "https://localhost:32782/",
-        "AWS_SQS": "https://sqs.us-east-1.amazonaws.com/817549174499/LogQueue.fifo",
-        "AWS_SQS_GROUP_ID": "LogQueue.fifo",
+        "SqlServerConnection": "Server=mydb.cbyylakdrivs.us-east-1.rds.amazonaws.com,1433;Database=FastFoodTotem;User Id=sa;Password=Fernando9+;MultipleActiveResultSets=true;TrustServerCertificate=true;",
+        "PaymentServiceUrl": "https://localhost:32768",
+        "AWS_SQS_LOG": "https://sqs.us-east-1.amazonaws.com/817549174499/FastFoodLogQueue.fifo",
+        "AWS_SQS_GROUP_ID_LOG": "FastFoodLogQueue.fifo",
         "AWS_ACCESS_KEY_DYNAMO": "",
         "AWS_SECRET_KEY_DYNAMO": ""
       },
@@ -30,10 +30,10 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
-        "SqlServerConnection": "Server=;Database=FastFoodTotem;User Id=;Password=;MultipleActiveResultSets=true;TrustServerCertificate=true;",
-        "PaymentServiceUrl": "https://localhost:32782/",
-        "AWS_SQS_LOG": "https://sqs.us-east-1.amazonaws.com/817549174499/LogQueue.fifo",
-        "AWS_SQS_GROUP_ID_LOG": "LogQueue.fifo",
+        "SqlServerConnection": "Server=mydb.cbyylakdrivs.us-east-1.rds.amazonaws.com,1433;Database=FastFoodTotem;User Id=sa;Password=Fernando9+;MultipleActiveResultSets=true;TrustServerCertificate=true;",
+        "PaymentServiceUrl": "https://localhost:32768",
+        "AWS_SQS_LOG": "https://sqs.us-east-1.amazonaws.com/817549174499/FastFoodLogQueue.fifo",
+        "AWS_SQS_GROUP_ID_LOG": "FastFoodLogQueue.fifo",
         "AWS_ACCESS_KEY_DYNAMO": "",
         "AWS_SECRET_KEY_DYNAMO": ""
       },

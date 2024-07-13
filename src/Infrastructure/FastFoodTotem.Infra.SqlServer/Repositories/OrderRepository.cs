@@ -45,5 +45,15 @@ namespace FastFoodTotem.Infra.SqlServer.Repositories
 
             await SaveChangesAsync(cancellationToken);
         }
+
+        public async Task DeleteOrderById(int id, CancellationToken cancellationToken)
+        {
+            var order = await Data.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+            if (order != null)
+            {
+                Data.Remove(order);
+                await SaveChangesAsync(cancellationToken);
+            }
+        }
     }
 }
