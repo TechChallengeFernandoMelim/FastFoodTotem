@@ -37,7 +37,25 @@ Todas as variáveis de ambiente do projeto visam fazer integração com algum se
 
 ## Execução com Docker
 
-A execução do projeto pode ser feita buildando o dockerfile e depois executando a imagem gerada em um container. O serviço foi testado sendo executado direto pelo visual Studio e pela AWS.
+Para executar com docker, basta executar o seguinte comando na pasta raiz do projeto para gerar a imagem:
+
+``` docker build -t fast_food_totem -f .\DeleteUserInfoSaga\Dockerfile . ```
+
+Para subir o container, basta executar o seguinte comando:
+
+``` 
+docker run -e AWS_ACCESS_KEY_DYNAMO=""
+-e AWS_SECRET_KEY_DYNAMO=""
+-e AWS_SQS_LOG=""
+-e AWS_SQS_GROUP_ID_LOG=""
+-e SqlServerConnection=""
+-e PaymentServiceUrl=""
+-p 8081:8081 -p 8080:8080 fast_food_totem
+```
+
+Observação: as variáveis de ambiente não estão com valores para não expor meu ambiente AWS. Para utilizar o serviço corretamente, é necessário definir um valor para as variáveis.
+
+Além disso, como o projeto foi desenvolvido em .NET, também é possível executá-lo pelo Visual Studio ou com o CLI do .NET.
 
 
 ## Testes
