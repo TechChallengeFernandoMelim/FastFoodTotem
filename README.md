@@ -39,7 +39,7 @@ Todas as variáveis de ambiente do projeto visam fazer integração com algum se
 
 Para executar com docker, basta executar o seguinte comando na pasta raiz do projeto para gerar a imagem:
 
-``` docker build -t fast_food_totem -f .\DeleteUserInfoSaga\Dockerfile . ```
+``` docker build -t fast_food_totem -f .\src\Presentation\FastFoodTotem.Api\Dockerfile . ```
 
 Para subir o container, basta executar o seguinte comando:
 
